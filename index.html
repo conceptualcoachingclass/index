@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Conceptual Coaching Class</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/style.css">
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f7f4fb;
+  color: #333;
+}
+
+/* HEADER */
+.top-header {
+  background: linear-gradient(135deg, #b57edc, #d6b3f0);
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.top-header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 20px;
+  max-width: 1100px;
+  margin: auto;
+  gap: 30px;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 260px;
+}
+
+.hero-content h2 {
+  color: #7a4fa3;
+}
+
+/* LOGIN CARD */
+.login-card {
+  width: 320px;
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.login-card h3 {
+  text-align: center;
+  color: #7a4fa3;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.login-card button {
+  width: 100%;
+  padding: 10px;
+  background: #b57edc;
+  border: none;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.login-card small {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+}
+
+/* ACHIEVERS */
+.achievers-section {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.achievers-section h2 {
+  color: #7a4fa3;
+}
+
+.achievers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.achiever-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.achiever-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* INFO SECTIONS */
+.info-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.info-section.light {
+  background: white;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #b57edc;
+  color: white;
+  font-size: 14px;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="top-header">
+    <h1>Conceptual Coaching Class</h1>
+    <p>Classes 1–12 | Learn with Clarity</p>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- LEFT CONTENT -->
+    <div class="hero-content">
+      <h2>Building Strong Foundations for Bright Futures</h2>
+      <p>
+        Daily class reports, regular tests, performance tracking,
+        puzzles, achievements, and transparent communication with parents.
+      </p>
+
+      <ul>
+        <li>✔ Daily Teaching Updates</li>
+        <li>✔ Test & Progress Reports</li>
+        <li>✔ Attendance Tracking</li>
+        <li>✔ Rewards & Achievements</li>
+      </ul>
+    </div>
+
+    <!-- LOGIN CARD -->
+    <div class="login-card">
+      <h3>Login</h3>
+
+      <input type="text" id="userId" placeholder="Student / Teacher ID">
+      <input type="password" id="password" placeholder="Password">
+
+      <button id="loginBtn">Login</button>
+
+      <small>Forgot password? Contact Admin</small>
+    </div>
+
+  </section>
+
+  <!-- ACHIEVERS -->
+  <section class="achievers-section">
+    <h2>Top Achievers</h2>
+
+    <div class="achievers-grid">
+      <div class="achiever-card">
+        <img src="assets/achievers/student1.jpg">
+        <h4>Rahul Sharma</h4>
+        <p>Class 10 – 95%</p>
+      </div>
+
+      <div class="achiever-card">
+        <img src="assets/achievers/student2.jpg">
+        <h4>Anjali Verma</h4>
+        <p>Class 12 – 96%</p>
+      </div>
+
+      <div class="achiever-card">
+        <img src="assets/achievers/student3.jpg">
+        <h4>Arjun Patel</h4>
+        <p>Class 9 – Topper</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="info-section">
+    <h2>About Us</h2>
+    <p>
+      Conceptual Coaching Class focuses on concept clarity,
+      personal attention, and consistent evaluation for academic excellence.
+    </p>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="info-section light">
+    <h2>Contact Us</h2>
+    <p>
+      📍 Your Address <br>
+      📞 +91 XXXXX XXXXX <br>
+      ✉ conceptualcoachingclass@gmail.com
+    </p>
+  </section>
+
+  <footer>
+    © 2026 Conceptual Coaching Class
+  </footer>
+
+</body>
+</html>
