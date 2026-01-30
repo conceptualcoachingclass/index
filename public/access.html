@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Access Study Material</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+body{
+  margin:0;
+  background:#f7f4fb;
+}
+
+.container{
+  max-width:900px;
+  margin:60px auto;
+  background:white;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+  display:flex;
+  flex-wrap:wrap;
+}
+
+/* LEFT FORM */
+.form-box{
+  flex:1;
+  padding:30px;
+  min-width:280px;
+}
+.form-box h2{
+  color:#7a4fa3;
+  margin-top:0;
+}
+.form-box label{
+  display:block;
+  margin-top:15px;
+  font-weight:600;
+}
+.form-box input,
+.form-box select{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+}
+.form-box button{
+  margin-top:20px;
+  padding:12px;
+  width:100%;
+  background:#b57edc;
+  border:none;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* RIGHT INFO */
+.info-box{
+  flex:1;
+  background:#f2eafa;
+  padding:30px;
+  min-width:280px;
+}
+.info-box h3{
+  color:#7a4fa3;
+}
+.info-box p{
+  line-height:1.6;
+}
+
+@media(max-width:700px){
+  .container{
+    margin:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LEFT -->
+  <div class="form-box">
+    <h2>Free Study material</h2>
+
+
+  
+
+    <label>Your Name</label>
+    <input type="text" id="name" placeholder="Enter your name">
+
+    <label>Mobile Number (Login ID)</label>
+    <input type="tel" id="mobile" placeholder="10-digit mobile number">
+
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Create password">
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Confirm password">
+
+    <button onclick="submitForm()">Continue</button>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="info-box">
+    <h3>What you get</h3>
+    <p>
+      After registration, you can download
+      <b>worksheets, sample papers, notes,
+      and important questions</b> for classes 1–12.
+    </p>
+
+    <ul>
+      <li>Editable study material</li>
+      <li>Teacher & student resources</li>
+      <li>Instant access</li>
+    </ul>
+  </div>
+
+</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+
+<script>
+function submitForm(){
+  const name = document.getElementById("name").value.trim();
+  const mobile = document.getElementById("mobile").value.trim();
+
+  if(name === ""){
+    alert("Please enter your name");
+    return;
+  }
+
+  if(!/^[6-9]\d{9}$/.test(mobile)){
+    alert("Please enter a valid 10-digit mobile number");
+    return;
+  }
+
+  const userRef = db.collection("users").doc(mobile);
+
+  userRef.get().then((doc) => {
+
+    // 🔁 USER ALREADY EXISTS → LOGIN
+    if(doc.exists){
+      const data = doc.data();
+
+      // default password check (fixed)
+      if(data.password !== "study@123"){
+        alert("Please login using default password: study@123");
+        return;
+      }
+
+      // Save session
+      localStorage.setItem("userId", mobile);
+      localStorage.setItem("name", data.name);
+      localStorage.setItem("role", data.role);
+
+      window.location.href = "temp-dashboard.html";
+    }
+
+    // 🆕 NEW USER → CREATE
+    else{
+      userRef.set({
+        name: name,
+        role: "temp",
+        password: "study@123",
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+
+        localStorage.setItem("userId", mobile);
+        localStorage.setItem("name", name);
+        localStorage.setItem("role", "temp");
+
+        window.location.href = "temp-dashboard.html";
+      });
+    }
+
+  }).catch((error) => {
+    alert("Error: " + error.message);
+  });
+}
+</script>
+
+</script>
+
+</body>
+</html>

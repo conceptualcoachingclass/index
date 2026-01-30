@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Conceptual Coaching Class</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:'Segoe UI',sans-serif;
+}
+body{
+  margin:0;
+  background:#f7f4fb;
+  color:#333;
+}
+
+/* HEADER */
+header{
+  background:#b57edc;
+  color:white;
+  padding:25px 20px;
+  text-align:center;
+}
+header h1{margin:0;}
+header p{margin:5px 0 0;font-size:14px;}
+
+/* HERO */
+.hero{
+  max-width:1100px;
+  margin:auto;
+  #padding:40px 20px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:30px;
+  padding:30px 20px 20px;
+}
+
+/* LEFT CONTENT */
+.hero-left{
+  flex:1;
+  min-width:260px;
+}
+.hero-left h2{
+  color:#7a4fa3;
+}
+.hero-left ul{
+  padding-left:18px;
+}
+
+/* LOGIN */
+.login-card{
+  width:320px;
+  background:white;
+  padding:25px;
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+.login-card h3{
+  text-align:center;
+  color:#7a4fa3;
+}
+.login-card input{
+  width:100%;
+  padding:10px;
+  margin:8px 0;
+}
+.login-card button{
+  width:100%;
+  padding:10px;
+  background:#b57edc;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* SECTION */
+.section{
+  
+  max-width:1100px;
+  margin:20px auto;
+  padding:5px 10px;
+}
+.section h2{
+  color:#7a4fa3;
+  margin-bottom:15px;
+}
+
+/* PROGRAMS */
+.programs{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
+}
+.program-box{
+  background:white;
+  padding:15px;
+  border-left:5px solid #b57edc;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.program-box:hover{
+  background:#f2eafa;
+  transform: translateY(-2px);
+  box-shadow:0 8px 18px rgba(0,0,0,0.15);
+}
+
+
+/* ACHIEVER SLIDE (ONE BLOCK ONLY) */
+.achiever-box{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.12);
+  max-width:400px;
+}
+.achiever-box img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:6px;
+}
+
+/* COMMENTS */
+.comments{
+  background:white;
+  padding:20px;
+  border-radius:8px;
+  box-shadow:0 6px 15px rgba(0,0,0,0.12);
+}
+.comment{
+  border-bottom:1px solid #eee;
+  padding:10px 0;
+}
+.comment:last-child{border:none;}
+.comment strong{color:#7a4fa3;}
+
+footer{
+  background:#b57edc;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Conceptual Coaching Class</h1>
+  <p>Academic Coaching | Class 1 – 12</p>
+</header>
+
+<section class="hero">
+  <div class="hero-left">
+   
+    <h2>Building Strong Foundations for Bright Futures</h2>
+      <p>
+        Daily class reports, regular tests, performance tracking,
+        puzzles, achievements, and transparent communication with parents.
+      </p>
+    
+      <ul>
+        <li>✔ Daily Teaching Updates</li>
+        <li>✔ Test & Progress Reports</li>
+        <li>✔ Attendance Tracking</li>
+        <li>✔ Rewards & Achievements</li>
+          
+      <li>✔ Notes, Worksheets & Sample Papers</li>
+      <li>✔ Important Questions & Test Series</li>
+     </ul>
+  </div>
+
+  <div class="login-card">
+    <h3>Login</h3>
+    <input type="text" placeholder="Mobile number">
+    <input type="password" placeholder="Password">
+    
+    <button>Login</button>
+   
+
+    <small>Contact admin for password reset</small>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Our Academic Programs</h2>
+  <div class="programs">
+    <div class="program-box" onclick="goAccess()">Coaching Classes (1 – 12)</div>
+<div class="program-box" onclick="goAccess()">Sample Papers & Worksheets</div>
+<div class="program-box" onclick="goAccess()">Chapter-wise Notes</div>
+<div class="program-box" onclick="goAccess()">Important Exam Questions</div>
+<div class="program-box" onclick="goAccess()">Teacher Resources</div>
+<div class="program-box" onclick="goAccess()">Student Practice Material</div>
+
+  </div>
+</section>
+
+<section class="section">
+  <h2>Top Achiever</h2>
+
+  <!-- ONE BLOCK ONLY -->
+  <div class="achiever-box" id="achieverBox">
+    <img id="achieverImg" src="assets/achievers/student1.jpg">
+    <h4 id="achieverName">Rahul Sharma</h4>
+    <p id="achieverInfo">Class 10 – 95%</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Student Comments</h2>
+
+  <!-- LEFT SIDE, NO SLIDE -->
+  <div class="comments">
+    <div class="comment">
+      <strong>Ananya (Class 9)</strong>
+      <p>Concepts are explained very clearly.</p>
+    </div>
+    <div class="comment">
+      <strong>Rohit (Class 10)</strong>
+      <p>Notes and worksheets helped a lot.</p>
+    </div>
+    <div class="comment">
+      <strong>Pooja (Class 8)</strong>
+      <p>Regular tests improved my confidence.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Conceptual Coaching Class
+</footer>
+
+<script>
+/* ACHIEVER AUTO CHANGE */
+const achievers = [
+  {
+    img:"assets/achievers/student1.jpg",
+    name:"Rahul Sharma",
+    info:"Class 10 – 95%"
+  },
+  {
+    img:"assets/achievers/student2.jpg",
+    name:"Ananya Verma",
+    info:"Class 12 – 97%"
+  },
+  {
+    img:"assets/achievers/student3.jpg",
+    name:"Rohan Patel",
+    info:"Class 8 – Olympiad Gold"
+  }
+];
+
+let index=0;
+setInterval(()=>{
+  index=(index+1)%achievers.length;
+  document.getElementById("achieverImg").src=achievers[index].img;
+  document.getElementById("achieverName").innerText=achievers[index].name;
+  document.getElementById("achieverInfo").innerText=achievers[index].info;
+},4000);
+  
+  function goAccess(){
+  window.location.href = "access.html";
+}
+</script>
+
+</body>
+</html>
