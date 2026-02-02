@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Temp Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:#f7f4fb;
+}
+.header{
+  background:#b57edc;
+  color:white;
+  padding:15px 20px;
+}
+.container{
+  max-width:900px;
+  margin:40px auto;
+  background:white;
+  padding:30px;
+  border-radius:10px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.15);
+}
+h2{
+  color:#7a4fa3;
+}
+.info{
+  margin-top:20px;
+  padding:15px;
+  background:#f2eafa;
+  border-radius:8px;
+}
+.logout{
+  margin-top:30px;
+  padding:10px 20px;
+  background:#7a4fa3;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+// 🔐 Protect page
+if(!localStorage.getItem("userId")){
+  window.location.href = "access.html";
+}
+</script>
+
+<div class="header">
+  <h2>Conceptual Coaching Class</h2>
+</div>
+
+<div class="container">
+  <h2>Welcome to Free Study Material</h2>
+
+  <p><b>Name:</b> <span id="name"></span></p>
+  <p><b>Mobile:</b> <span id="mobile"></span></p>
+
+  <div class="info">
+    <p>
+      You can access free:
+      <ul>
+        <li>Sample Papers</li>
+        <li>Worksheets</li>
+        <li>Notes</li>
+        <li>Important Questions</li>
+      </ul>
+    </p>
+  </div>
+
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+
+<script>
+// Show user data
+document.getElementById("name").innerText =
+  localStorage.getItem("password");
+
+document.getElementById("mobile").innerText =
+  localStorage.getItem("userId");
+
+function logout(){
+  localStorage.clear();
+  window.location.href = "access.html";
+}
+</script>
+
+</body>
+</html>
