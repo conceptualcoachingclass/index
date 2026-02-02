@@ -102,7 +102,9 @@ body{
     <label>Confirm Password</label>
     <input type="password" id="confirmPassword" placeholder="Confirm password">
 
-    <button onclick="submitForm()">Continue</button>
+  
+<button onclick="registerUser()">Continue</button>
+
   </div>
 
   <!-- RIGHT -->
@@ -122,81 +124,67 @@ body{
   </div>
 
 </div>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-
-<script>
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 
 
-<script>
-function submitForm(){
-  const name = document.getElementById("name").value.trim();
-  const mobile = document.getElementById("mobile").value.trim();
 
-  if(name === ""){
-    alert("Please enter your name");
-    return;
-  }
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-database.js";
 
-  if(!/^[6-9]\d{9}$/.test(mobile)){
-    alert("Please enter a valid 10-digit mobile number");
-    return;
-  }
+  const firebaseConfig = {
+    apiKey: "AIzaSyBQYCJVJvm2UNoXoEUkQZ35vSGSX3cjRAw",
+    authDomain: "conceptualcoachingclass-42429.firebaseapp.com",
+    databaseURL: "https://conceptualcoachingclass-42429-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "conceptualcoachingclass-42429",
+    storageBucket: "conceptualcoachingclass-42429.appspot.com",
+    messagingSenderId: "18408888135",
+    appId: "1:18408888135:web:c1882c0761dc5fa8fade62"
+  };
 
-  const userRef = db.collection("users").doc(mobile);
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
 
-  userRef.get().then((doc) => {
+  window.registerUser = function () {
+    const name = document.getElementById("name").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // 🔁 USER ALREADY EXISTS → LOGIN
-    if(doc.exists){
-      const data = doc.data();
-
-      // default password check (fixed)
-      if(data.password !== "study@123"){
-        alert("Please login using default password: study@123");
-        return;
-      }
-
-      // Save session
-      localStorage.setItem("userId", mobile);
-      localStorage.setItem("name", data.name);
-      localStorage.setItem("role", data.role);
-
-      window.location.href = "temp-dashboard.html";
+    if (!name || !mobile || !password || !confirmPassword) {
+      alert("Please fill all fields");
+      return;
     }
 
-    // 🆕 NEW USER → CREATE
-    else{
-      userRef.set({
-        name: name,
-        role: "temp",
-        password: "study@123",
-        createdAt: firebase.firestore.FieldValue.serverTimestamp()
-      }).then(() => {
-
-        localStorage.setItem("userId", mobile);
-        localStorage.setItem("name", name);
-        localStorage.setItem("role", "temp");
-
-        window.location.href = "temp-dashboard.html";
-      });
+    if (!/^[6-9]\d{9}$/.test(mobile)) {
+      alert("Enter valid 10-digit mobile number");
+      return;
     }
 
-  }).catch((error) => {
-    alert("Error: " + error.message);
-  });
-}
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    set(ref(db, "users/" + mobile), {
+      name: name,
+      password: password,
+      createdAt: Date.now()
+    })
+    .then(() => {
+  // Save session
+  localStorage.setItem("userId", mobile);
+  localStorage.setItem("name", name);
+  localStorage.setItem("role", "temp"); // 👈 temp user
+
+  // Redirect to temp dashboard
+  window.location.href = "temp-dashboard.html";
+});
+
+  };
 </script>
 
-</script>
+
+
 
 </body>
 </html>
